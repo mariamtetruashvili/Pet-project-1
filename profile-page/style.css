@@ -1,0 +1,366 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: #f4f4f4;
+  color: #333;
+  text-align: center;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile__image-container {
+  position: relative;
+  cursor: pointer;
+  border-radius: 50%;
+  /* Padding removed to maintain proper image sizing */
+  padding: 0;
+  width: 150px;
+  height: 150px;
+  margin: 20px auto;
+}
+
+.profile__avatar-edit-icon {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8) url("/profile-page/images/edit-icon.svg")
+    center/26px 26px no-repeat;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 50%;
+}
+
+.profile__image-container:hover .profile__avatar-edit-icon {
+  opacity: 1;
+}
+h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  background: #fff;
+  border: 2px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #333;
+  color: #fff;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.social-icons img:hover {
+  opacity: 1;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.section {
+  display: none;
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.section.active {
+  display: block;
+}
+
+h2 {
+  color: #0077cc;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  position: relative;
+  width: calc((100% / 3) - 10px);
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  transition: transform 0.3s ease;
+  border-radius: 10px;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.05);
+}
+
+/* Like button — initial state: white heart */
+.like-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* When liked – red heart with bounce animation */
+
+.like-icon.liked {
+  color: #ff3b3b;
+  background: rgba(255, 59, 59, 0.15);
+  animation: pop 0.3s ease;
+}
+
+/* Bounce animation for like effect */
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Hover text at the bottom-left corner */
+.hover-text {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background-color: rgba(243, 215, 215, 0.95);
+  color: #0077cc;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 20px;
+  opacity: 0;
+  backdrop-filter: blur(6px) brightness(1.2);
+  -webkit-backdrop-filter: blur(6px) brightness(1.2);
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  pointer-events: auto;
+  white-space: normal;
+  max-width: 60%;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+/* Show hover text on gallery item hover */
+.gallery-item:hover .hover-text {
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+/* 📦 General modal style */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+/* 📸 Profile photo modal */
+
+.profile-photo-modal .modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.profile-photo-modal .modal-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.profile-photo-modal .modal-images img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile-photo-modal .modal-images img:hover {
+  transform: scale(1.05);
+}
+
+/* 🔍 Zoomed image modal */
+.zoom-modal img {
+  max-width: 90vw;
+  max-height: 90vh;
+  box-shadow: 0 0 20px #fff;
+  border-radius: 10px;
+}
+
+/* ❌ Close button for modals */
+.modal .close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  padding: 5px 10px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.modal .close:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.modal-description {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.upload-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.upload-btn:hover {
+  background-color: #0056b3;
+}
+
+.zoom-modal-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.zoom-modal-content .hover-text {
+  opacity: 1;
+}
